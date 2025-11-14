@@ -5,7 +5,6 @@ from datetime import datetime
 
 app = FastAPI()
 
-# ⚙️ Configuração do InfluxDB
 url = os.getenv("INFLUXDB_URL", "http://influxdb:8086")
 token = os.getenv("INFLUXDB_TOKEN", "DKkcVOJlopsZ_xLccqhj2wYpf-IhuVMx2AMeFupymE1XySZlP9Nz0F2zRvX0zpjiVsf5AiXGUeuZSauNV2HC3w==")
 org = os.getenv("INFLUXDB_ORG", "meu_org")
@@ -17,7 +16,6 @@ write_api = client.write_api()
 @app.post("/dados")
 async def receber_dados(data: dict):
     try:
-        # Converte timestamp do JSON (ms) para datetime
         ts = datetime.fromtimestamp(data["timestamp"] / 1000)
 
         point = (
@@ -35,3 +33,4 @@ async def receber_dados(data: dict):
         return {"status": "success", "dados": data}
     except Exception as e:
         return {"status": "error", "detalhe": str(e)}
+
