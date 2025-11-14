@@ -27,16 +27,6 @@ services:
       - DOCKER_INFLUXDB_INIT_BUCKET=meu_bucket
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=DKkcVOJlopsZ_xLccqhj2wYpf-IhuVMx2AMeFupymE1XySZlP9Nz0F2zRvX0zpjiVsf5AiXGUeuZSauNV2HC3w==
 
-  grafana:
-    image: grafana/grafana
-    container_name: grafana
-    ports:
-      - "3030:3000"
-    depends_on:
-      - influxdb
-    volumes:
-      - grafana_data:/var/lib/grafana
-
 volumes:
   influxdb_data:
-  grafana_data:
+
